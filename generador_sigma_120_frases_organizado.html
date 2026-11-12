@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGMA MODE | Generador de frases</title>
+
+  <!-- Librerías de estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+  <!-- 1. Estilos propios: tema negro y verde neón -->
+  <style>
+:root {
+  --neon:#b7ff72;
+  --bg:#070a08;
+  --panel:#141b16;
+  --line:#344438}
+* {
+  box-sizing:border-box}
+body {
+  min-height:100vh;
+  background:radial-gradient(circle at 85% 0%,#25452a 0%,transparent 40%),var(--bg);
+  color:#effff0;
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+.shell {
+  max-width:940px;
+  margin:auto;
+  padding:55px 18px}
+.eyebrow {
+  letter-spacing:.27em;
+  color:var(--neon);
+  font-size:.8rem;
+  font-weight:800}
+.hero {
+  text-align:center;
+  margin-bottom:34px}
+.hero h1 {
+  font-size:clamp(2.8rem,9vw,5.5rem);
+  font-weight:950;
+  letter-spacing:-.07em;
+  line-height:1}
+.hero h1 span {
+  color:var(--neon)}
+.hero p {
+  color:#b8c9bc}
+.pill {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid var(--line);
+  background:#162019;
+  border-radius:30px;
+  padding:8px 15px;
+  color:var(--neon);
+  font-size:.8rem}
+.panel {
+  border:1px solid var(--line);
+  background:linear-gradient(135deg,#19221b,#101511);
+  border-radius:24px;
+  padding:clamp(20px,4vw,34px);
+  box-shadow:0 25px 60px #0007}
+label {
+  font-weight:700;
+  margin-bottom:10px}
+.form-select {
+  background-color:#0c120e!important;
+  color:#effff0!important;
+  border:1px solid #425447!important;
+  padding:14px;
+  border-radius:12px}
+.form-select:focus {
+  box-shadow:0 0 0 .2rem #b7ff7230;
+  border-color:var(--neon)}
+.form-select option {
+  background:#0c120e}
+.action {
+  border:0;
+  background:var(--neon);
+  color:#101b0b;
+  font-weight:900;
+  padding:15px;
+  border-radius:13px;
+  width:100%;
+  transition:transform .2s,box-shadow .2s}
+.action:hover {
+  transform:translateY(-2px);
+  box-shadow:0 0 28px #b7ff7255}
+.display {
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:radial-gradient(circle at 100% 0%,#29432a,#0b100c 65%);
+  border:1px solid #48633f;
+  border-radius:18px;
+  padding:28px}
+.display .smalltag {
+  font-size:.73rem;
+  letter-spacing:.18em;
+  color:var(--neon);
+  font-weight:800}
+.quote {
+  font-size:clamp(1.45rem,3vw,2.15rem);
+  font-weight:850;
+  line-height:1.35;
+  margin:20px 0}
+.secondary {
+  border:1px solid #536b50;
+  color:#d6f8c9;
+  background:#18231a;
+  border-radius:12px;
+  padding:12px 18px;
+  font-weight:750}
+.secondary:hover {
+  background:#263d28}
+.secondary:disabled {
+  opacity:.45;
+  cursor:not-allowed}
+.foot {
+  color:#9baf9f;
+  font-size:.86rem}
+.glyph {
+  display:inline-flex;
+  width:44px;
+  height:44px;
+  border:1px solid #526d4a;
+  border-radius:14px;
+  align-items:center;
+  justify-content:center;
+  margin:0 5px 16px;
+  color:var(--neon)}
+svg {
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+  </style>
+</head>
+<body>
+  <!-- 2. Interfaz: encabezado, controles y resultado -->
+<main class="shell">
+<header class="hero animate__animated animate__fadeInDown">
+<div class="eyebrow mb-3">◈ MINDSET GENERATOR / 001</div>
+
+<div class="glyph">
+<svg viewBox="0 0 24 24">
+<path d="m13 2-9 12h7l-1 8 10-13h-7l0-7Z"/>
+</svg>
+</div>
+
+<div class="glyph">
+<svg viewBox="0 0 24 24">
+<path d="M4 16 9 7l3 6 3-6 5 9-8 5-8-5Z"/>
+</svg>
+</div>
+
+<div class="glyph">
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9"/>
+<path d="m8 12 3 3 5-6"/>
+</svg>
+</div>
+
+<h1>SIGMA <span>MODE.</span>
+</h1>
+<p class="mt-3">Frases de edits, actitud de película y humor de TikTok.</p>
+<span class="pill">● GENERADOR ACTIVADO</span>
+</header>
+<section class="panel animate__animated animate__fadeInUp">
+<div class="row g-4">
+<div class="col-md-5">
+<h2 class="h5 fw-bold mb-4">CONFIGURA TU AURA</h2>
+<label for="tipo">Estilo de frase</label>
+<select id="tipo" class="form-select mb-4">
+<option value="sigma">Sigma solitario</option>
+<option value="alfa">Alfa legendario</option>
+<option value="frio">Modo frío</option>
+<option value="gym">Gym y disciplina</option>
+<option value="meme">Sigma meme</option>
+</select>
+<label for="tono">Nivel de intensidad</label>
+<select id="tono" class="form-select mb-4">
+<option value="serio">Épico</option>
+<option value="dramatico">Ultra dramático</option>
+<option value="ironico">Irónico / meme</option>
+</select>
+<button id="generar" class="action">⚡ GENERAR FRASE</button>
+<p class="foot mt-3">Cada clic muestra una frase distinta del estilo seleccionado.</p>
+</div>
+
+<div class="col-md-7">
+<h2 class="h5 fw-bold mb-4">TU FRASE DEL DÍA</h2>
+<div id="resultado" class="display" aria-live="polite">
+<div class="smalltag" id="etiqueta">◈ AURA EN ESPERA</div>
+
+<div class="quote" id="frase">Elige tu modo y activa el generador.</div>
+
+<div class="foot">SIGMA MODE / ORIGINAL QUOTES</div>
+
+</div>
+
+<div class="d-flex flex-wrap gap-2 mt-3">
+<button id="copiar" class="secondary" disabled>▣ COPIAR FRASE</button>
+<button id="otra" class="secondary">↻ OTRA FRASE</button>
+</div>
+
+<p id="estado" class="foot mt-3" role="status">
+</p>
+</div>
+
+</div>
+
+</section>
+
+<p class="foot text-center mt-4">Frases originales de parodia, ideales para captions y edits.</p>
+</main>
+  <script>
+    // 1. Banco de frases: 5 estilos × 3 tonos × 8 frases = 120 frases
+    const frases = {
+  "sigma": {
+    "serio": [
+      "No sigo al ruido. Sigo mi propio camino.",
+      "La calma también puede ser una forma de poder.",
+      "Mientras todos compiten por atención, yo construyo mi historia.",
+      "Mi mejor movimiento es avanzar sin anunciarlo.",
+      "El progreso no siempre hace ruido.",
+      "La mejor competencia es con quien fui ayer.",
+      "No necesito espectadores para empezar.",
+      "Mi enfoque vale más que mil notificaciones."
+    ],
+    "dramatico": [
+      "Nací para ser un misterio que ni el algoritmo comprende.",
+      "Cuando el mundo hizo ruido, activé el silencio legendario.",
+      "No desaparecí: estaba desbloqueando mi siguiente nivel.",
+      "El destino me mandó una señal. La dejé en visto.",
+      "Mi sombra pidió vacaciones de tanto seguir una leyenda.",
+      "La luna cambió de fase cuando activé mi modo sigma.",
+      "El algoritmo intentó entenderme y terminó viendo tutoriales.",
+      "Mi historia tiene más temporadas que el universo."
+    ],
+    "ironico": [
+      "No soy antisocial, estoy en modo ahorro de batería social.",
+      "Mi aura es tan silenciosa que hasta el WiFi me respeta.",
+      "Sigma desde que elegí sentarme solo en el recreo.",
+      "No persigo tendencias: las veo pasar desde mi silla.",
+      "+3000 de aura por llevar lápiz extra.",
+      "El silencio es mi idioma, excepto cuando pido tacos.",
+      "Mi arco sigma comenzó cuando me dejaron en visto.",
+      "Entré en modo incógnito para buscar la tarea."
+    ]
+  },
+  "alfa": {
+    "serio": [
+      "Liderar empieza por cumplir lo que prometes.",
+      "La confianza se demuestra con acciones, no con volumen.",
+      "El respeto se gana escuchando y actuando con integridad.",
+      "La verdadera fuerza sabe trabajar en equipo.",
+      "Un buen líder ayuda a otros a crecer.",
+      "La seguridad también consiste en admitir errores.",
+      "Escuchar primero es una decisión inteligente.",
+      "La responsabilidad habla más fuerte que la fama."
+    ],
+    "dramatico": [
+      "Entré al salón y hasta el reloj empezó a marcar mi era.",
+      "Mi presencia no necesita presentación: trae su propia intro.",
+      "El jefe final apareció… y solo venía por su mochila.",
+      "La historia no estaba lista para mi siguiente capítulo.",
+      "Llegué cinco minutos temprano y el universo me nombró capitán.",
+      "La cámara lenta empezó cuando abrí mi cuaderno.",
+      "Mi entrada al recreo merecía créditos cinematográficos.",
+      "Hasta la puerta automática reconoció mi liderazgo."
+    ],
+    "ironico": [
+      "Alfa nivel máximo: organicé el trabajo en equipo.",
+      "Mi rugido más fuerte fue pedir permiso para salir.",
+      "Modo líder activado: ya repartí las diapositivas.",
+      "Soy el jefe final… del grupo de WhatsApp de la tarea.",
+      "Alfa supremo: compartí mis apuntes sin drama.",
+      "+500 de aura por organizar las sillas.",
+      "Mi imperio consiste en dos plantas y una calculadora.",
+      "Líder del equipo porque fui el único con batería."
+    ]
+  },
+  "frio": {
+    "serio": [
+      "Pienso antes de reaccionar. Esa es mi ventaja.",
+      "No todo merece una respuesta inmediata.",
+      "Una mente tranquila ve opciones donde otros ven ruido.",
+      "La paciencia convierte la presión en perspectiva.",
+      "Respirar antes de responder también es autocontrol.",
+      "La claridad llega cuando dejo de reaccionar a todo.",
+      "Puedo ser firme sin ser cruel.",
+      "Elijo mis batallas y cuido mi energía."
+    ],
+    "dramatico": [
+      "Mi mirada congeló la escena… era el aire acondicionado.",
+      "El silencio cayó sobre la ciudad cuando puse el celular en no molestar.",
+      "Ni el invierno pudo descifrar mi expresión de lunes.",
+      "Frío como una cinemática a las tres de la mañana.",
+      "Mi cara de lunes fue declarada patrimonio del hielo.",
+      "Activé modo frío y la pantalla bajó el brillo sola.",
+      "El villano tembló al escuchar mi alarma de las seis.",
+      "El viento narró mi historia con voz de tráiler."
+    ],
+    "ironico": [
+      "Modo frío activado porque olvidé la chamarra.",
+      "Tengo una mirada de hielo y un chocolate caliente.",
+      "No respondo seco: mi teclado está en modo invierno.",
+      "Soy tan frío que el refri me pidió consejos.",
+      "-200 de aura por decir «igualmente» al mesero.",
+      "Modo frío: el ventilador está en velocidad tres.",
+      "Mi cara es seria, pero estoy pensando en pan dulce.",
+      "Me llaman hielo porque siempre pido agua fría."
+    ]
+  },
+  "gym": {
+    "serio": [
+      "La constancia supera a la motivación de un solo día.",
+      "Descansar también forma parte del progreso.",
+      "Mejorar poco a poco sigue siendo mejorar.",
+      "La disciplina se construye con hábitos sostenibles.",
+      "La técnica importa más que presumir resultados.",
+      "La paciencia es parte de cualquier hábito.",
+      "Escuchar al cuerpo también es disciplina.",
+      "El equilibrio hace que el progreso dure."
+    ],
+    "dramatico": [
+      "Hoy entrené mi paciencia: esperé a que se desocupara la máquina.",
+      "Cada repetición tiene su propia banda sonora épica.",
+      "La leyenda comenzó cuando decidí ser constante.",
+      "Mi entrenamiento secreto: cargar con todas las bolsas del súper.",
+      "Mi entrenamiento legendario fue encontrar mis tenis.",
+      "La playlist empezó y el pasillo se volvió escena de película.",
+      "Hoy derroté al jefe final: la procrastinación.",
+      "Cargué la mochila y sonó música de transformación."
+    ],
+    "ironico": [
+      "Mi preentreno es una playlist y ganas de terminar la tarea.",
+      "Hice una sentadilla y el algoritmo me recomendó ser atleta.",
+      "Gym sigma: subir las escaleras sin quejarme.",
+      "Mi récord personal: no olvidar la botella de agua.",
+      "+700 de aura por estirar después de estar sentado.",
+      "Mi rutina de cardio: correr por el camión.",
+      "El gym me espera, pero primero hay examen.",
+      "Hice dos vueltas a la cuadra y desbloqueé un logro."
+    ]
+  },
+  "meme": {
+    "serio": [
+      "No necesito un edit para recordar lo que valgo.",
+      "El mejor glow up es aprender algo nuevo.",
+      "Ser auténtico tiene más estilo que copiar a todos.",
+      "El verdadero aura es tratar bien a los demás.",
+      "El respeto suma más aura que cualquier filtro.",
+      "Ayudar a alguien es un verdadero logro.",
+      "Ser diferente no necesita explicación épica.",
+      "Una buena decisión también merece su propio edit."
+    ],
+    "dramatico": [
+      "POV: entregaste la tarea y empezó a sonar música de jefe final.",
+      "El profesor dijo “saquen una hoja” y comenzó mi arco de villano.",
+      "Entré por un lápiz y salí con desarrollo de personaje.",
+      "Se cayó el internet. Fue entonces cuando conocí mi verdadero poder.",
+      "POV: el profe dijo «trabajo libre» y empezó la saga final.",
+      "La calculadora mostró ERROR y nació mi origen de villano.",
+      "Sonó el timbre y todos entraron en modo velocidad legendaria.",
+      "El último nugget desapareció: comenzó la guerra del multiverso."
+    ],
+    "ironico": [
+      "+9999 de aura por devolver el carrito del súper.",
+      "-500 de aura por saludar a alguien que no me saludaba.",
+      "Mi desarrollo de personaje empezó cuando se acabaron los nuggets.",
+      "Sigma certificado por cerrar 37 pestañas del navegador.",
+      "+99999 de aura por encontrar un peso en la mochila.",
+      "-1000 de aura por empujar una puerta que decía JALAR.",
+      "POV: ganaste el debate diciendo «depende».",
+      "El verdadero sigma usa Ctrl+S antes de cerrar."
+    ]
+  }
+};
+
+// 2. Referencias a los elementos de la interfaz
+const elements = {
+  tipo: document.getElementById('tipo'),
+  tono: document.getElementById('tono'),
+  frase: document.getElementById('frase'),
+  etiqueta: document.getElementById('etiqueta'),
+  resultado: document.getElementById('resultado'),
+  copiar: document.getElementById('copiar'),
+  estado: document.getElementById('estado'),
+  generar: document.getElementById('generar'),
+  otra: document.getElementById('otra')
+};
+
+// 3. Estado: evita repetir la frase anterior cuando hay alternativas
+let ultimaFrase = '';
+let fraseActual = '';
+
+function elegirFrase(opciones) {
+  const disponibles = opciones.length > 1
+    ? opciones.filter(texto => texto !== ultimaFrase)
+    : opciones;
+  return disponibles[Math.floor(Math.random() * disponibles.length)];
+}
+
+// 4. Generar y animar una frase
+function generarFrase() {
+  const { tipo, tono, frase, etiqueta, resultado, copiar, estado } = elements;
+  const opciones = frases[tipo.value][tono.value];
+  fraseActual = elegirFrase(opciones);
+  ultimaFrase = fraseActual;
+
+  frase.textContent = `“${fraseActual}”`;
+  etiqueta.textContent = `◈ ${tipo.selectedOptions[0].text.toUpperCase()} / ${tono.selectedOptions[0].text.toUpperCase()}`;
+  copiar.disabled = false;
+  estado.textContent = 'Frase generada. Lista para tu edit.';
+
+  resultado.classList.remove('animate__animated', 'animate__fadeInUp', 'animate__faster');
+  void resultado.offsetWidth; // Reinicia la animación
+  resultado.classList.add('animate__animated', 'animate__fadeInUp', 'animate__faster');
+}
+
+// 5. Copiar al portapapeles, con alternativa para archivos locales
+async function copiarFrase() {
+  if (!fraseActual) return;
+  try {
+    await navigator.clipboard.writeText(fraseActual);
+    elements.estado.textContent = '¡Frase copiada!';
+  } catch (error) {
+    const campo = document.createElement('textarea');
+    campo.value = fraseActual;
+    campo.style.position = 'fixed';
+    campo.style.opacity = '0';
+    document.body.appendChild(campo);
+    campo.select();
+    const copiado = document.execCommand('copy');
+    campo.remove();
+    elements.estado.textContent = copiado
+      ? '¡Frase copiada!'
+      : 'No se pudo copiar automáticamente. Selecciona el texto para copiarlo.';
+  }
+}
+
+// 6. Eventos de los botones
+ elements.generar.addEventListener('click', generarFrase);
+ elements.otra.addEventListener('click', generarFrase);
+ elements.copiar.addEventListener('click', copiarFrase);
+  </script>
+</body>
+</html>
